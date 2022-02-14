@@ -1,15 +1,15 @@
 /* Global Variables */
-let baseURL = 'https://api.openweathermap.org/data/2.5/weather';
-let apiKey = '7cc4e7c8bcb737e09980dc3d49d1e5c2';
+let baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
+const apiKey = 'ae684c8809f260571a8216177ef33e56';
 
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-const getWeather = async (baseURL, zip, apiKey)=>{
+const getWeather = async (baseUrl, zipCode, apiKey)=>{
 
-    const res = await fetch(`${baseURL}?q=${zip}$appid=${apiKey}`)
+  const res = await fetch(`${baseUrl}?q=${zipCode}&appid=${apiKey}`);
     try {
   
       const data = await res.json();
