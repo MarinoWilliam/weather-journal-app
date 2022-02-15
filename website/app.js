@@ -1,5 +1,5 @@
 /* Global Variables */
-let baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+let baseURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const apiKey = '7cc4e7c8bcb737e09980dc3d49d1e5c2&units=imperial';
 
 // Create a new date instance dynamically with JS
@@ -8,7 +8,7 @@ let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 const getWeather = async (baseURL, zipCode, apiKey)=>{
 
-  const response = await fetch(`${baseURL}?q=${zipCode}&appid=${apiKey}`);
+  const response = await fetch(`${baseURL}${zipCode}&appid=${apiKey}`);
     try {
   
       const data = await response.json();
@@ -22,8 +22,8 @@ const getWeather = async (baseURL, zipCode, apiKey)=>{
   document.getElementById('generate').addEventListener('click', performAction);
 
   function performAction(){
-    const newzip =  document.getElementById('zip').value;
     const feel=document.getElementById('feelings').value;
+    const newzip =  document.getElementById('zip').value;
     getWeather(baseURL,newzip, apiKey)
     .then(function (data){
       postData('/addData',{temperature : data.main.temp, date:newDate, feel:feel})
