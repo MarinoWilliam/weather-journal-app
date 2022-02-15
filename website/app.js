@@ -26,7 +26,7 @@ const getWeather = async (baseURL, zipCode, apiKey)=>{
     const feel=document.getElementById('feelings').value;
     getWeather(baseURL,newzip, apiKey)
     .then(function (data){
-      postData('/addData',{temperature : data.main.temperature, date:newDate, feel:feel})
+      postData('/addData',{temperature : data.main.temp, date:newDate, feel:feel})
     }).then(function(){
       updateUI()
     })
