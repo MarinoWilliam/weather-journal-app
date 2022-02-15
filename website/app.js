@@ -1,22 +1,20 @@
 /* Global Variables */
-let baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
-const apiKey = 'ae684c8809f260571a8216177ef33e56&units=imperial';
+let baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+const apiKey = '7cc4e7c8bcb737e09980dc3d49d1e5c2&units=imperial';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-const getWeather = async (baseUrl, zipCode, apiKey)=>{
+const getWeather = async (baseURL, zipCode, apiKey)=>{
 
-  const res = await fetch(`${baseUrl}?q=${zipCode}&appid=${apiKey}`);
+  const response = await fetch(`${baseURL}?q=${zipCode}&appid=${apiKey}`);
     try {
   
-      const data = await res.json();
-      console.log(data)
+      const data = await response.json();
       return data;
     }  catch(error) {
       console.log("error", error);
-      // appropriately handle the error
     }
    
   }
@@ -26,7 +24,7 @@ const getWeather = async (baseUrl, zipCode, apiKey)=>{
   function performAction(e){
     const newzip =  document.getElementById('zip').value;
     const feel=document.getElementById('feelings').value;
-    getWeather(baseUrl,newzip, apiKey)
+    getWeather(baseURL,newzip, apiKey)
     .then(function (data){
       postData('/addData',{temperature : data.main.temperature, date:newDate, feel:feel})
     }).then(function(){
@@ -41,7 +39,6 @@ const getWeather = async (baseUrl, zipCode, apiKey)=>{
       const request = await fetch('/all');
       try {
           const allData = await request.json();
-          console.log(allData);
           document.getElementById('date').innerHTML = allData.date;
           document.getElementById('temp').innerHTML = allData.temperature;
           document.getElementById('content').innerHTML = allData.feel;
@@ -79,7 +76,6 @@ const allData = await request.json()
 }
 catch(error) {
   console.log("error", error);
-  // appropriately handle the error
 }
 };
 
