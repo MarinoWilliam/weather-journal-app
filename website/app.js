@@ -21,7 +21,7 @@ const getWeather = async (baseURL, zipCode, apiKey)=>{
 
   document.getElementById('generate').addEventListener('click', performAction);
 
-  function performAction(e){
+  function performAction(){
     const newzip =  document.getElementById('zip').value;
     const feel=document.getElementById('feelings').value;
     getWeather(baseURL,newzip, apiKey)
